@@ -6,7 +6,7 @@
 6、对url的配置，参照Django,学其皮毛，形似
 
 使用方法：
-1、以ngx_lua安装,用的是openresty,我的安装路/opt/openresty/；
+1、先ngx_lua安装,下载openresty,我的安装路/opt/openresty/；
 2、把整个项目复制到/opt/openresty/nginx/conf/lua/下，目录结构如下
                lua
                ├─biz               #业务处理放的路径，不限定此文件夹名称，在urlconf中定义
