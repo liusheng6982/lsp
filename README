@@ -1,9 +1,29 @@
-﻿1、在ngx_lua的基础上，仿照jsp的标签方式，用lua实现的lsp( lua server page )
+1、在ngx_lua的基础上，仿照jsp的标签方式，用lua实现的lsp( lua server page )
 2、只实现了三个标签：<%=   %>  <% %>  <%include file=""%>
 3、这个三个标签只简单的测试过，对标签中的出现的各种异常关未覆盖到。
 4、urlconf是主入口，请按原来的例子配置
 5、lsp文件按jsp的方式，会生成一lua文件，此版本如果lsp就有修改，不会自动更新lua文件，需要手工册work下对应的lua文件
-6、在nginx.conf中，加上：
+6、对url的配置，参照Django,学其皮毛，形似
+
+使用方法：
+1、以ngx_lua安装,用的是openresty,我的安装路/opt/openresty/；
+2、把整个项目复制到/opt/openresty/nginx/conf/lua/下，目录结构如下
+               lua
+               ├─biz                             #业务处理放的路径，不限定此文件夹名称，在urlconf中定义
+               ├─lsp                             #存放页面的地方，不限定此文件夹名称，在urlconf中定义
+               │  ├─blog  
+               │  └─sample
+               ├─lsplib                          #源代码
+               └─work                            #根据lsp生成的 lua文件，此文件名限定死，work文件夹权限需要777
+                  ├─blog
+                  └─sample
+
+3、修改在/opt/openresty/nginx/conf/nginx.conf文件（详见代码中的nginx.conf文件），添加如下：
                env LSP_HOME=/opt/openresty/nginx/conf/lua;
-   
-   
+    修改 lua_package_path '/opt/openresty/nginx/conf/lua/?.lua;;';
+    加server中加下如下：
+         location ~ ^/lua/(\w+) {
+            default_type 'text/html';
+	    content_by_lua_file conf/lua/urlconf.lua;
+            lua_code_cache off;
+   	 }
