@@ -3,3 +3,7 @@
 3、这个三个标签只简单的测试过，对标签中的出现的各种异常关未覆盖到。
 4、urlconf是主入口，请按原来的例子配置
 5、lsp文件按jsp的方式，会生成一lua文件，此版本如果lsp就有修改，不会自动更新lua文件，需要手工册work下对应的lua文件
+6、在nginx.conf中，加上：
+               env LSP_HOME=/opt/openresty/nginx/conf/lua;
+   
+   
