@@ -9,12 +9,12 @@
 1、以ngx_lua安装,用的是openresty,我的安装路/opt/openresty/；
 2、把整个项目复制到/opt/openresty/nginx/conf/lua/下，目录结构如下
                lua
-               ├─biz                   #业务处理放的路径，不限定此文件夹名称，在urlconf中定义
-               ├─lsp                   #存放页面的地方，不限定此文件夹名称，在urlconf中定义
+               ├─biz               #业务处理放的路径，不限定此文件夹名称，在urlconf中定义
+               ├─lsp               #存放页面的地方，不限定此文件夹名称，在urlconf中定义
                │  ├─blog  
                │  └─sample
-               ├─lsplib                #源代码
-               └─work                  #根据lsp生成的 lua文件，此文件名限定死，work文件夹权限需要777
+               ├─lsplib            #源代码
+               └─work              #根据lsp生成的 lua文件，此文件名限定死，work文件夹权限需要777
                   ├─blog
                   └─sample
 
